@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(layout="wide")
 
@@ -9,7 +10,7 @@ with col1:
 
 with col2:
     st.title("Bang Kardi")
-    content="""
+    content = """
         Hi, My name is Kardi, Iam a fullstack programmer, right now i learn how to code with Python, hope
         i could be good python programmer
     """
@@ -19,3 +20,15 @@ content2 = """
     Below you can find some of the apps I have built in Python. Feel Free to contact me !
 """
 st.write(content2)
+
+col3, col4 = st.columns(2)
+
+df = pd.read_csv("data.csv", sep=";")
+
+with col3:
+    for index, row in df[:10].iterrows():
+        st.header(row["title"])
+
+with col4:
+    for index, row in df[10:].iterrows():
+        st.header(row["title"])
